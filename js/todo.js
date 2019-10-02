@@ -20,6 +20,25 @@ $(document)
             }
             return uuid;
         }
+          
+        $(document).on('click','#button',function(){
+            var mylist = $('input[type="text"].input-text').val();
+            var newInList = '<li id =' + generateUUID() + ' class="">'; 
+            var inputName = '<input name="done-todo" type="checkbox" class="done-todo" > '+mylist+' </input> </li>' ;
+            $("ol").append(newInList + inputName);
+            $('input[type="text"].input-text').val(""); 
+         });
 
-        // code to be implemented
+         $(document).on('click','input[name="done-todo"]',function(){
+            $('input[name="done-todo"]').click(function() {  
+                        if ($(this).is(':checked')) {
+                        $(this).parent().css( { "color": "gray", "text-decoration": "line-through" } );
+                        $(this).parent().addClass( "checked" );
+                 }else {
+                        $(this).parent().css( { "color": "black", "text-decoration": "none" } );
+                        $(this).parent().removeClass( "checked" );
+                 };
+                })
+         });
+
     });
